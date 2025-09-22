@@ -10,7 +10,7 @@ export default function Home() {
   const personalGmail = "abdallahayman834@gmail.com";
   return (
     <main>
-      <div className="flex flex-col lg:flex-row h-screen justify-center items-center pt-15 text-center lg:text-start gap-10 lg:gap-10 xl:gap-20 pb-20 lg:pb-0 container mx-auto">
+      <div className="flex flex-col lg:flex-row h-screen justify-center items-center pt-15 text-center lg:text-start gap-10 lg:gap-10 xl:gap-20 pb-20 lg:pb-0 container mx-auto overflow-hidden">
         <AnimatedContent
           distance={190}
           direction="vertical"

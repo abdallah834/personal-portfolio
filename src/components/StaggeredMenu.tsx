@@ -1,5 +1,11 @@
 "use client";
-import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { gsap } from "gsap";
 
 export interface StaggeredMenuItem {
@@ -105,6 +111,22 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     return () => ctx.revert();
   }, [menuButtonColor, position]);
 
+  useEffect(() => {
+    // Prevent body scroll when menu is open
+    if (open) {
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+    };
+  }, [open]);
   const buildOpenTimeline = useCallback(() => {
     const panel = panelRef.current;
     const layers = preLayerElsRef.current;
@@ -402,7 +424,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   ]);
 
   return (
-    <div className="sm-scope w-full h-full overflow-x-hidden">
+    <div className="sm-scope w-full h-full overflow-hidden">
       <div
         className={
           (className ? className + " " : "") +
@@ -494,7 +516,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-x-hidden overflow-y-auto z-10 backdrop-blur-[12px] min-h-[110vh]"
+          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-x-hidden overflow-y-auto z-10 backdrop-blur-[12px] max-h-screen"
           style={{ WebkitBackdropFilter: "blur(12px)" }}
           inert={!open}
         >

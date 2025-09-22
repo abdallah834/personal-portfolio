@@ -38,11 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="!overflow-x-hidden">
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${robotoCondensedFont.className}${robotoFont.className} antialiased !overflow-x-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} ${robotoCondensedFont.className}${robotoFont.className} antialiased overflow-hidden`}
       >
-        <div className="min-h-[110vh] md:min-h-screen absolute left-0 right-0 z-[-1]">
+        <div className="min-h-screen absolute left-0 right-0 z-[-1]">
           <DarkVeil speed={1.3} hueShift={31} />
         </div>
         <Navbar />
