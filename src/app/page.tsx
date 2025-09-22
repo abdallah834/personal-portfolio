@@ -1,103 +1,77 @@
+"use client";
+
 import Image from "next/image";
-
+import { Icon } from "@iconify/react";
+import Link from "next/link";
+import { FlipWords } from "@/components/ui/flip-words";
+import AnimatedContent from "@/components/AnimatedContent";
 export default function Home() {
+  const words = ["React JS.", "Next JS.", "TailwindCSS.", "BootstrapCSS."];
+  const personalGmail = "abdallahayman834@gmail.com";
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <main>
+      <div className="flex flex-col lg:flex-row h-screen justify-center items-center pt-15 text-center lg:text-start gap-10 lg:gap-10 xl:gap-20 pb-20 lg:pb-0 container mx-auto">
+        <AnimatedContent
+          distance={190}
+          direction="vertical"
+          reverse={false}
+          duration={2}
+          ease="power3.out"
+          initialOpacity={0}
+          animateOpacity
+          scale={1}
+          threshold={0.2}
+          delay={0.2}
+        >
+          <div className="img-container relative overflow-hidden before:absolute before:top-0 before:bottom-0 before:left-[-150px] before:content-[''] before:w-1/2 before:h-full before:bg-zinc-300/35 before:backdrop-blur-xs before:rounded-l-2xl after:absolute after:top-0 after:bottom-0 after:right-[-150px] after:content-[''] after:w-1/2 after:h-full after:bg-zinc-300/35 after:backdrop-blur-xs after:rounded-r-2xl hover:before:left-0 hover:after:right-0 before:transition-all after:transition-all before:duration-300  after:duration-300 after:delay-200 before:delay-200 min-[1028px]:w-3xs min-[1150px]:w-2xs">
+            <div className="flex flex-row items-center justify-center absolute top-0 bottom-0 left-[50%] translate-x-[-50%] z-[1] w-full gap-4 hover:*:blur-none">
+              <Link
+                href={`https://mail.google.com/mail/u/0/?to=${personalGmail}&fs=1&tf=cm`}
+                className="blur-xl transition-all duration-600 delay-100 hover:scale-115"
+                target="_blank"
+              >
+                <Icon icon="logos:google-gmail" className="text-3xl" />
+              </Link>
+              <Link
+                href={"https://github.com/abdallah834?tab=repositories"}
+                className="blur-xl transition-all duration-600 delay-100 hover:scale-115"
+                target="_blank"
+              >
+                <Icon icon="mdi:github" className="text-4xl" />
+              </Link>
+            </div>
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={"/img-0.png"}
+              alt="personal photo"
+              width={300}
+              height={300}
+              className="rounded-2xl"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+          </div>
+        </AnimatedContent>
+        <AnimatedContent
+          distance={190}
+          direction="vertical"
+          reverse={false}
+          duration={2}
+          ease="power3.out"
+          initialOpacity={0}
+          animateOpacity
+          scale={1}
+          threshold={0}
+          delay={0.7}
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+          <div className="sm:w-md md:w-2xl lg:w-2xl text-white ">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl mb-8 font-[Roboto Condensed] font-bold">
+              I am Abdullah Ayman.
+            </h2>
+            <span className="break-all flex flex-col items-center text-[15px] min-[395px]:text-lg min-[500px]:inline-block sm:text-2xl font-[Roboto Condensed] text-center lg:text-start">
+              I create frontend websites and web apps using{" "}
+              <FlipWords words={words} className="p-0 text-white font-bold" />
+            </span>
+          </div>
+        </AnimatedContent>
+      </div>
+    </main>
   );
 }
