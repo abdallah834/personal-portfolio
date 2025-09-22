@@ -118,20 +118,35 @@ const CardNav: React.FC<CardNavProps> = ({
 
   // Close menu function
   const closeMenu = useCallback(() => {
-    if (isAnimatingRef.current) return;
-
     const tl = tlRef.current;
     if (!tl || !isExpanded) return;
+
+    // If already animating, kill current animation and start closing
+    if (isAnimatingRef.current) {
+      tl.kill();
+      gsap.set(navRef.current, { height: calculateHeight() });
+      gsap.set(cardsRef.current, { y: 0, opacity: 1 });
+
+      // Recreate timeline for proper closing
+      const newTl = createTimeline();
+      if (newTl) {
+        newTl.progress(1);
+        tlRef.current = newTl;
+      }
+    }
 
     isAnimatingRef.current = true;
     setIsHamburgerOpen(false);
 
-    tl.eventCallback("onReverseComplete", () => {
-      setIsExpanded(false);
-      isAnimatingRef.current = false;
-    });
-    tl.reverse();
-  }, [isExpanded]);
+    const currentTl = tlRef.current;
+    if (currentTl) {
+      currentTl.eventCallback("onReverseComplete", () => {
+        setIsExpanded(false);
+        isAnimatingRef.current = false;
+      });
+      currentTl.reverse();
+    }
+  }, [isExpanded, calculateHeight, createTimeline]);
 
   // Toggle menu function
   const toggleMenu = useCallback(
