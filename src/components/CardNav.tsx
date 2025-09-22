@@ -1,8 +1,15 @@
+"use client";
 import { gsap } from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useLayoutEffect, useRef, useState } from "react";
-// use your own icon import if react-icons is not available
+import { useRouter } from "next/compat/router";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 
 type CardNavLink = {
   label: string;
@@ -46,8 +53,11 @@ const CardNav: React.FC<CardNavProps> = ({
   const navRef = useRef<HTMLDivElement | null>(null);
   const cardsRef = useRef<HTMLDivElement[]>([]);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const isAnimatingRef = useRef(false);
 
-  const calculateHeight = () => {
+  const router = useRouter();
+
+  const calculateHeight = useCallback(() => {
     const navEl = navRef.current;
     if (!navEl) return 260;
 
@@ -80,9 +90,9 @@ const CardNav: React.FC<CardNavProps> = ({
       }
     }
     return 260;
-  };
+  }, []);
 
-  const createTimeline = () => {
+  const createTimeline = useCallback(() => {
     const navEl = navRef.current;
     if (!navEl) return null;
 
@@ -104,8 +114,70 @@ const CardNav: React.FC<CardNavProps> = ({
     );
 
     return tl;
-  };
+  }, [ease, calculateHeight]);
 
+  // Close menu function
+  const closeMenu = useCallback(() => {
+    if (isAnimatingRef.current) return;
+
+    const tl = tlRef.current;
+    if (!tl || !isExpanded) return;
+
+    isAnimatingRef.current = true;
+    setIsHamburgerOpen(false);
+
+    tl.eventCallback("onReverseComplete", () => {
+      setIsExpanded(false);
+      isAnimatingRef.current = false;
+    });
+    tl.reverse();
+  }, [isExpanded]);
+
+  // Toggle menu function
+  const toggleMenu = useCallback(
+    (e?: React.MouseEvent) => {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      if (isAnimatingRef.current) return;
+
+      const tl = tlRef.current;
+      if (!tl) return;
+
+      isAnimatingRef.current = true;
+
+      if (!isExpanded) {
+        setIsHamburgerOpen(true);
+        setIsExpanded(true);
+        tl.eventCallback("onComplete", () => {
+          isAnimatingRef.current = false;
+        });
+        tl.play(0);
+      } else {
+        setIsHamburgerOpen(false);
+        tl.eventCallback("onReverseComplete", () => {
+          setIsExpanded(false);
+          isAnimatingRef.current = false;
+        });
+        tl.reverse();
+      }
+    },
+    [isExpanded]
+  );
+
+  // Handle card click
+  const handleCardClick = useCallback(
+    (e: React.MouseEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMenu();
+    },
+    [closeMenu]
+  );
+
+  // Initialize timeline
   useLayoutEffect(() => {
     const tl = createTimeline();
     tlRef.current = tl;
@@ -114,48 +186,47 @@ const CardNav: React.FC<CardNavProps> = ({
       tl?.kill();
       tlRef.current = null;
     };
-  }, [ease, items]);
+  }, [createTimeline]);
 
+  // Handle resize - but only update height if expanded
   useLayoutEffect(() => {
     const handleResize = () => {
-      if (!tlRef.current) return;
+      if (!tlRef.current || isAnimatingRef.current) return;
 
+      // Only recalculate if menu is currently expanded
       if (isExpanded) {
         const newHeight = calculateHeight();
         gsap.set(navRef.current, { height: newHeight });
-
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          newTl.progress(1);
-          tlRef.current = newTl;
-        }
-      } else {
-        tlRef.current.kill();
-        const newTl = createTimeline();
-        if (newTl) {
-          tlRef.current = newTl;
-        }
       }
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isExpanded]);
+    let timeoutId: NodeJS.Timeout;
+    const debouncedResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(handleResize, 100);
+    };
 
-  const toggleMenu = () => {
-    const tl = tlRef.current;
-    if (!tl) return;
-    if (!isExpanded) {
-      setIsHamburgerOpen(true);
-      setIsExpanded(true);
-      tl.play(0);
-    } else {
-      setIsHamburgerOpen(false);
-      tl.eventCallback("onReverseComplete", () => setIsExpanded(false));
-      tl.reverse();
-    }
-  };
+    window.addEventListener("resize", debouncedResize);
+    return () => {
+      window.removeEventListener("resize", debouncedResize);
+      clearTimeout(timeoutId);
+    };
+  }, [isExpanded, calculateHeight]);
+
+  // Handle route changes - close menu when navigating
+  useEffect(() => {
+    const handleRouteChangeStart = () => {
+      if (isExpanded && !isAnimatingRef.current) {
+        closeMenu();
+      }
+    };
+
+    router?.events.on("routeChangeStart", handleRouteChangeStart);
+
+    return () => {
+      router?.events.off("routeChangeStart", handleRouteChangeStart);
+    };
+  }, [router, closeMenu, isExpanded]);
 
   const setCardRef = (i: number) => (el: HTMLDivElement | null) => {
     if (el) cardsRef.current[i] = el;
@@ -169,7 +240,7 @@ const CardNav: React.FC<CardNavProps> = ({
         ref={navRef}
         className={`card-nav ${
           isExpanded ? "open" : ""
-        } block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height]  backdrop-blur-sm bg-linear-160 from-white/20 from-50% to-[#0496eb]/70 to-80% border-2 border-white/45`}
+        } block h-[60px] p-0 rounded-xl shadow-md relative overflow-hidden will-change-[height] backdrop-blur-sm bg-linear-160 from-white/20 from-50% to-[#0496eb]/70 to-80% border-2 border-white/45`}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">
           <div
@@ -180,6 +251,12 @@ const CardNav: React.FC<CardNavProps> = ({
             role="button"
             aria-label={isExpanded ? "Close menu" : "Open menu"}
             tabIndex={0}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                toggleMenu();
+              }
+            }}
           >
             <div
               className={`hamburger-line w-[30px] h-[2px] bg-current ease-linear [transform-origin:50%_50%] ${
@@ -207,9 +284,9 @@ const CardNav: React.FC<CardNavProps> = ({
               key={`${item.label}-${idx}`}
               className={`nav-card select-none relative flex flex-col gap-2 p-[12px_16px] rounded-[calc(0.75rem-0.2rem)] min-w-0 flex-[1_1_auto] h-auto min-h-[60px] md:h-full md:min-h-0 md:flex-[1_1_0%] *:text-white font-[Bebas_Neue] overflow-hidden`}
               ref={setCardRef(idx)}
-              onClick={() => toggleMenu()}
+              onClick={handleCardClick}
             >
-              <Link href={`${item.link}`}>
+              <Link href={`${item.link}`} className="block w-full h-full">
                 <Image
                   src={item?.bgImg || `/img-1.png`}
                   width={370}
@@ -218,22 +295,21 @@ const CardNav: React.FC<CardNavProps> = ({
                   className="absolute top-[-7px] left-0 z-[-4]"
                 />
                 <div className="w-full h-full absolute top-0 bottom-0 left-0 bg-black/40 transition-all duration-300 z-[-2] hover:bg-black/20" />
+                <div className="nav-card-label font-normal text-[18px] md:text-[22px] tracking-wider w-fit">
+                  {item.label}
+                </div>
+                <div className="nav-card-links mt-auto flex flex-col gap-[2px] w-fit">
+                  {item.links?.map((lnk, i) => (
+                    <span
+                      key={`${lnk.label}-${i}`}
+                      className="nav-card-link flex items-center gap-[6px] no-underline cursor-pointer transition-all duration-200 text-[15px] md:text-[16px] hover:bg-black rounded-lg py-0.5 px-2"
+                      aria-label={lnk.ariaLabel}
+                    >
+                      {lnk.label}
+                    </span>
+                  ))}
+                </div>
               </Link>
-              <div className="nav-card-label font-normal text-[18px] md:text-[22px] tracking-wider w-fit">
-                {item.label}
-              </div>
-              <div className="nav-card-links mt-auto flex flex-col gap-[2px] w-fit">
-                {item.links?.map((lnk, i) => (
-                  <a
-                    key={`${lnk.label}-${i}`}
-                    className="nav-card-link flex items-center gap-[6px] no-underline cursor-pointer transition-all duration-200 text-[15px] md:text-[16px] hover:bg-black rounded-lg py-0.5 px-2"
-                    href={lnk.href}
-                    aria-label={lnk.ariaLabel}
-                  >
-                    {lnk.label}
-                  </a>
-                ))}
-              </div>
             </div>
           ))}
         </div>
