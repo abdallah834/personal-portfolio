@@ -142,3 +142,7 @@
     background: #0099ff83;
   }
 }
+html,
+body {
+  overflow-x: hidden;
+}

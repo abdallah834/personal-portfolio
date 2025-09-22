@@ -3,7 +3,7 @@ import AnimatedContent from "@/components/AnimatedContent";
 
 export default function About() {
   return (
-    <div className="text-white h-screen flex flex-col justify-center items-center relative z-0 px-4">
+    <div className="text-white h-screen flex flex-col justify-center items-center relative z-0 px-4 pt-25 min-[390px]:pt-20 sm:pt-12">
       <AnimatedContent
         distance={50}
         direction="vertical"
@@ -20,7 +20,7 @@ export default function About() {
           <span className="text-md md:text-xl font-semibold">
             A quick overview
           </span>
-          <ul className="list-disc list-inside space-y-3 text-xs min-[485]:text-sm tracking-wide">
+          <ul className="list-disc list-inside space-y-3 text-xs md:text-base tracking-wide">
             <li>
               Started as a self taught web developer using udemy frontend web
               development courses and now a current attendant at route academy.

@@ -1,3 +1,4 @@
+"use client";
 import React, { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
@@ -401,11 +402,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   ]);
 
   return (
-    <div className="sm-scope w-full h-full">
+    <div className="sm-scope w-full h-full overflow-x-hidden">
       <div
         className={
           (className ? className + " " : "") +
-          "absolute top-0 bottom-0 w-full h-full"
+          "absolute top-0 bottom-0 right-0 left-0 w-full h-full overflow-x-hidden"
         }
         style={
           accentColor
@@ -417,7 +418,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       >
         <div
           ref={preLayersRef}
-          className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[5]"
+          className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[5] overflow-hidden"
           inert={true}
         >
           {(() => {
@@ -441,7 +442,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         </div>
 
         <header
-          className="staggered-menu-header flex justify-between absolute top-0 left-0 w-full  p-[2em] bg-transparent pointer-events-none z-20"
+          className="staggered-menu-header flex justify-between absolute top-0 left-0 w-full  p-[2em] bg-transparent pointer-events-none z-20 overflow-hidden"
           aria-label="Main navigation header"
         >
           <span></span>
@@ -493,29 +494,29 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <aside
           id="staggered-menu-panel"
           ref={panelRef}
-          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-hidden z-10 backdrop-blur-[12px]"
+          className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-x-hidden overflow-y-auto z-10 backdrop-blur-[12px] min-h-[110vh]"
           style={{ WebkitBackdropFilter: "blur(12px)" }}
           inert={!open}
         >
-          <div className="sm-panel-inner flex-1 flex flex-col gap-5">
+          <div className="sm-panel-inner flex-1 flex flex-col gap-5 max-w-full">
             <ul
-              className="sm-panel-list list-none m-0 p-0 flex flex-col"
+              className="sm-panel-list list-none m-0 p-0 flex flex-col max-w-full"
               role="list"
               data-numbering={displayItemNumbering || undefined}
             >
               {items && items.length ? (
                 items.map((it, idx) => (
                   <li
-                    className="sm-panel-itemWrap relative overflow-hidden leading-none mb-4"
+                    className="sm-panel-itemWrap relative overflow-hidden leading-none mb-4 max-w-full"
                     key={it.label + idx}
                   >
                     <a
-                      className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]"
+                      className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] max-w-full"
                       href={it.link}
                       aria-label={it.ariaLabel}
                       data-index={idx + 1}
                     >
-                      <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform text-5xl">
+                      <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform text-5xl overflow-hidden text-ellipsis whitespace-nowrap max-w-full">
                         {it.label}
                       </span>
                     </a>
@@ -523,11 +524,11 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                 ))
               ) : (
                 <li
-                  className="sm-panel-itemWrap relative overflow-hidden leading-none"
+                  className="sm-panel-itemWrap relative overflow-hidden leading-none max-w-full"
                   inert={true}
                 >
-                  <span className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]">
-                    <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
+                  <span className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em] max-w-full">
+                    <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform overflow-hidden text-ellipsis whitespace-nowrap max-w-full">
                       No items
                     </span>
                   </span>
@@ -537,14 +538,14 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 
             {displaySocials && socialItems && socialItems.length > 0 && (
               <div
-                className="sm-socials mt-auto pt-8 flex flex-col gap-3"
+                className="sm-socials mt-auto pt-8 flex flex-col gap-3 max-w-full pb-15"
                 aria-label="Social links"
               >
-                <h3 className="sm-socials-title m-0 text-base font-medium [color:var(--sm-accent,#ff0000)]">
+                <h3 className="sm-socials-title m-0 text-base font-medium [color:var(--sm-accent,#ff0000)] overflow-hidden text-ellipsis whitespace-nowrap">
                   Socials
                 </h3>
                 <ul
-                  className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap"
+                  className="sm-socials-list list-none m-0 p-0 flex flex-row items-center gap-4 flex-wrap max-w-full"
                   role="list"
                 >
                   {socialItems.map((s, i) => (
@@ -553,7 +554,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
                         href={s.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear"
+                        className="sm-socials-link text-[1.2rem] font-medium text-[#111] no-underline relative inline-block py-[2px] transition-[color,opacity] duration-300 ease-linear overflow-hidden text-ellipsis whitespace-nowrap max-w-full"
                       >
                         {s.label}
                       </a>
@@ -565,7 +566,6 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           </div>
         </aside>
       </div>
-
       <style>{`
 
 .sm-scope .staggered-menu-header { position: absolute; top: 0; left: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 2em; background: transparent; pointer-events: none; z-index: 20; }
@@ -601,7 +601,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
 .sm-scope .sm-socials-link:hover { color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-panel-title { margin: 0; font-size: 1rem; font-weight: 600; color: #fff; text-transform: uppercase; }
 .sm-scope .sm-panel-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.5rem; }
-.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: 4rem; cursor: pointer; line-height: 1; letter-spacing: -2px; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.4em; }
+.sm-scope .sm-panel-item { position: relative; color: #000; font-weight: 600; font-size: 1rem; cursor: pointer; line-height: 1; letter-spacing: -2px; text-transform: uppercase; transition: background 0.25s, color 0.25s; display: inline-block; text-decoration: none; padding-right: 1.4em; }
 .sm-scope .sm-panel-itemLabel { display: inline-block; will-change: transform; transform-origin: 50% 100%; }
 .sm-scope .sm-panel-item:hover { color: var(--sm-accent, #ff0000); }
 .sm-scope .sm-panel-list[data-numbering] { counter-reset: smItem; }
