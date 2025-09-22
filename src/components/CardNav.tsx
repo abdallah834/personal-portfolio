@@ -200,7 +200,7 @@ const CardNav: React.FC<CardNavProps> = ({
               ? "visible pointer-events-auto"
               : "invisible pointer-events-none"
           } md:flex-row md:items-end md:gap-[12px]`}
-          aria-hidden={!isExpanded}
+          inert={!isExpanded}
         >
           {items?.map((item, idx) => (
             <div

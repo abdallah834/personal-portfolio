@@ -182,6 +182,23 @@ export default function About() {
                 TailwindCSS
               </span>
             </AnimatedContent>
+            {/************ NextJS ***************/}
+            <AnimatedContent
+              distance={50}
+              direction="vertical"
+              reverse={false}
+              duration={2}
+              ease="power3.out"
+              initialOpacity={0}
+              animateOpacity
+              scale={1}
+              threshold={-0.5}
+              delay={1.8}
+            >
+              <span className="bg-white rounded-lg text-center w-fit px-3 opacity-90 text-black">
+                NextJS
+              </span>
+            </AnimatedContent>
             {/************ API ***************/}
             <AnimatedContent
               distance={50}

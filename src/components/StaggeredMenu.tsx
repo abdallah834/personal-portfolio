@@ -418,7 +418,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         <div
           ref={preLayersRef}
           className="sm-prelayers absolute top-0 right-0 bottom-0 pointer-events-none z-[5]"
-          aria-hidden="true"
+          inert={true}
         >
           {(() => {
             const raw =
@@ -457,7 +457,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <span
               ref={textWrapRef}
               className="sm-toggle-textWrap relative inline-block h-[1em] overflow-hidden whitespace-nowrap w-[var(--sm-toggle-width,auto)] min-w-[var(--sm-toggle-width,auto)] mt-[-5px]"
-              aria-hidden="true"
+              inert={true}
             >
               <span
                 ref={textInnerRef}
@@ -476,7 +476,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <span
               ref={iconRef}
               className="sm-icon relative w-[14px] h-[14px] shrink-0 inline-flex items-center justify-center [will-change:transform]"
-              aria-hidden="true"
+              inert={true}
             >
               <span
                 ref={plusHRef}
@@ -495,7 +495,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
           ref={panelRef}
           className="staggered-menu-panel absolute top-0 right-0 h-full bg-white flex flex-col p-[6em_2em_2em_2em] overflow-hidden z-10 backdrop-blur-[12px]"
           style={{ WebkitBackdropFilter: "blur(12px)" }}
-          aria-hidden={!open}
+          inert={!open}
         >
           <div className="sm-panel-inner flex-1 flex flex-col gap-5">
             <ul
@@ -524,7 +524,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               ) : (
                 <li
                   className="sm-panel-itemWrap relative overflow-hidden leading-none"
-                  aria-hidden="true"
+                  inert={true}
                 >
                   <span className="sm-panel-item relative text-black font-semibold text-[4rem] cursor-pointer leading-none tracking-[-2px] uppercase transition-[background,color] duration-150 ease-linear inline-block no-underline pr-[1.4em]">
                     <span className="sm-panel-itemLabel inline-block [transform-origin:50%_100%] will-change-transform">
