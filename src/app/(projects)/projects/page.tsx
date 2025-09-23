@@ -61,7 +61,9 @@ export default function About() {
         >
           <div className="flex h-full w-full items-center justify-center text-white lg:w-sm xl:w-md">
             <Link
-              href={"https://route-social-app.vercel.app/"}
+              href={
+                "https://route-social-app-git-main-abdallahs-projects-1ea03f16.vercel.app/login"
+              }
               className="hover:*:scale-105 w-lg"
               target="_blank"
             >
@@ -183,7 +185,9 @@ export default function About() {
             </div>
             <div className="flex flex-col items-center gap-7">
               <Link
-                href={"https://route-social-app.vercel.app/"}
+                href={
+                  "https://route-social-app-git-main-abdallahs-projects-1ea03f16.vercel.app/login"
+                }
                 className="hover:*:scale-105 min-[400px]:w-sm sm:w-lg overflow-hidden rounded-lg"
                 target="_blank"
               >
