@@ -183,7 +183,7 @@ export default function About() {
             </div>
             <div className="flex flex-col items-center gap-7">
               <Link
-                href={"https://next-js-e-commerce-omega-rouge.vercel.app/"}
+                href={"https://route-social-app.vercel.app/"}
                 className="hover:*:scale-105 min-[400px]:w-sm sm:w-lg overflow-hidden rounded-lg"
                 target="_blank"
               >
@@ -208,7 +208,7 @@ export default function About() {
             </div>
             <div className="flex flex-col items-center gap-7">
               <Link
-                href={"https://next-js-e-commerce-omega-rouge.vercel.app/"}
+                href={"https://abdallah834.github.io/weather-app/"}
                 className="hover:*:scale-105 min-[400px]:w-sm sm:w-lg overflow-hidden rounded-lg"
                 target="_blank"
               >
@@ -231,7 +231,7 @@ export default function About() {
             </div>
             <div className="flex flex-col items-center gap-7 mb-20">
               <Link
-                href={"https://next-js-e-commerce-omega-rouge.vercel.app/"}
+                href={"https://abdallah834.github.io/Mealify-landing-page/"}
                 className="hover:*:scale-105 min-[400px]:w-sm sm:w-lg overflow-hidden rounded-lg"
                 target="_blank"
               >
