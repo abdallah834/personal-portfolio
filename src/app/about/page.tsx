@@ -2,6 +2,63 @@
 import AnimatedContent from "@/components/AnimatedContent";
 
 export default function About() {
+  const skillsArray = [
+    {
+      backgroundColor: "bg-amber-600",
+      textColor: "text-white",
+      content: "HTML5",
+    },
+    {
+      backgroundColor: "bg-cyan-600",
+      textColor: "text-white",
+      content: "CSS3",
+    },
+    {
+      backgroundColor: "bg-violet-500",
+      textColor: "text-white",
+      content: "Bootstrap",
+    },
+    {
+      backgroundColor: "bg-yellow-300",
+      textColor: "text-black",
+      content: "JavaScript ES6",
+    },
+    {
+      backgroundColor: "bg-cyan-400",
+      textColor: "text-black",
+      content: "React",
+    },
+    {
+      backgroundColor: "bg-cyan-600",
+      textColor: "text-white",
+      content: "TypeScript",
+    },
+    {
+      backgroundColor: "bg-cyan-600",
+      textColor: "text-white",
+      content: "TailwindCSS",
+    },
+    {
+      backgroundColor: "bg-white",
+      textColor: "text-black",
+      content: "NextJS",
+    },
+    {
+      backgroundColor: "bg-white",
+      textColor: "text-black",
+      content: "API Integration",
+    },
+    {
+      backgroundColor: "bg-white",
+      textColor: "text-black",
+      content: "Git & Github",
+    },
+    {
+      backgroundColor: "bg-white",
+      textColor: "text-black",
+      content: "SEO Basics",
+    },
+  ];
   return (
     <div className="text-white h-screen flex flex-col justify-center items-center relative z-0 px-4 pt-25 min-[390px]:pt-20 sm:pt-12">
       <AnimatedContent
@@ -45,7 +102,7 @@ export default function About() {
           </ul>
         </div>
       </AnimatedContent>
-      <div className="technical-soft-skills-container mt-8 lg:mt-25 flex flex-col lg:flex-row justify-center container mx-auto gap-10">
+      <div className="technical-soft-skills-container mt-8 lg:mt-25 flex flex-col lg:flex-row justify-center container mx-auto gap-5 sm:gap-10">
         <div className="technical flex flex-col gap-2">
           <AnimatedContent
             distance={50}
@@ -62,197 +119,28 @@ export default function About() {
             <span className="text-xl font-semibold">Technical Skills</span>
           </AnimatedContent>
           <div className="flex flex-wrap gap-4 min-[425px]:w-md text-white font-semibold text-sm sm:text-base">
-            {/************ HTML ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={0.6}
-            >
-              <span className="bg-amber-600 rounded-lg text-center w-fit px-3 opacity-90">
-                HTML5
-              </span>
-            </AnimatedContent>
-            {/************ CSS ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={0.8}
-            >
-              <span className="bg-cyan-600 rounded-lg text-center w-fit px-3 opacity-90">
-                CSS3
-              </span>
-            </AnimatedContent>
-            {/************ Bootstrap ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={1}
-            >
-              <span className="bg-violet-500 rounded-lg text-center w-fit px-3 opacity-90">
-                Bootstrap
-              </span>
-            </AnimatedContent>
-            {/************ JS ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={1.2}
-            >
-              <span className="bg-yellow-300 rounded-lg text-center w-fit px-3 text-black opacity-90">
-                JavaScript ES6
-              </span>
-            </AnimatedContent>
-
-            {/************ React ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={1.4}
-            >
-              <span className="bg-cyan-400 rounded-lg text-center w-fit px-3 text-black opacity-90">
-                React
-              </span>
-            </AnimatedContent>
-            {/************ TS ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={1.6}
-            >
-              <span className="bg-cyan-600 rounded-lg text-center w-fit px-3 opacity-90">
-                TypeScript
-              </span>
-            </AnimatedContent>
-            {/************ TailwindCSS ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={1.8}
-            >
-              <span className="bg-cyan-600 rounded-lg text-center w-fit px-3 opacity-90">
-                TailwindCSS
-              </span>
-            </AnimatedContent>
-            {/************ NextJS ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={1.8}
-            >
-              <span className="bg-white rounded-lg text-center w-fit px-3 opacity-90 text-black">
-                NextJS
-              </span>
-            </AnimatedContent>
-            {/************ API ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={2}
-            >
-              <span className="bg-white rounded-lg text-center w-fit px-3 text-black opacity-90">
-                API Integration
-              </span>
-            </AnimatedContent>
-            {/************ Git ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={2.2}
-            >
-              <span className="bg-white rounded-lg text-center w-fit px-3 text-black opacity-90">
-                Git & Github
-              </span>
-            </AnimatedContent>
-            {/************ SEO ***************/}
-            <AnimatedContent
-              distance={50}
-              direction="vertical"
-              reverse={false}
-              duration={2}
-              ease="power3.out"
-              initialOpacity={0}
-              animateOpacity
-              scale={1}
-              threshold={-0.5}
-              delay={2.4}
-            >
-              <span className="bg-white rounded-lg text-center w-fit px-3 text-black opacity-90">
-                SEO Basics
-              </span>
-            </AnimatedContent>
+            {skillsArray.map((skill, index) => (
+              <AnimatedContent
+                key={index}
+                distance={50}
+                direction="vertical"
+                ease={"power3.out"}
+                initialOpacity={0}
+                animateOpacity
+                scale={1}
+                threshold={-0.5}
+                delay={1 + index * 0.1}
+              >
+                <span
+                  className={`px-2 rounded-full ${skill.backgroundColor} ${skill.textColor} shadow-lg text-sm sm:text-base`}
+                >
+                  {skill.content}
+                </span>
+              </AnimatedContent>
+            ))}
           </div>
         </div>
-        <div className="soft flex flex-col gap-2 pb-5 sm:pb-0">
+        <div className="soft flex flex-col gap-2 pb-15 sm:pb-0">
           <AnimatedContent
             distance={50}
             direction="vertical"
