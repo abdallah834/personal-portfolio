@@ -60,7 +60,7 @@ export default function About() {
     },
   ];
   return (
-    <div className="text-white h-screen flex flex-col justify-center items-center relative z-0 px-4 pt-25 min-[390px]:pt-20 sm:pt-12">
+    <div className="text-white h-screen flex flex-col justify-center items-center relative z-0 px-4 pt-25 min-[390px]:pt-20 sm:pt-12 overflow-y-scroll">
       <AnimatedContent
         distance={50}
         direction="vertical"

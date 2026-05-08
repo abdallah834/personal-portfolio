@@ -42,6 +42,7 @@ export default function Home() {
             </div>
             <Image
               src={"/img-0.png"}
+              loading="lazy"
               alt="personal photo"
               width={300}
               height={300}
