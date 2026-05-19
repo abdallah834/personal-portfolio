@@ -32,6 +32,7 @@ overrides:
   lodash@>=4.7.0 <4.17.11: '>=4.17.11'
   moment@<2.29.2: '>=2.29.2'
   moment@>=2.18.0 <2.29.4: '>=2.29.4'
+  next@>=15.2.0 <15.5.18: '>=15.5.18'
   next@>=15.6.0-canary.0 <16.1.5: '>=16.1.5'
   next@>=16.0.0-beta.0 <16.0.11: '>=16.0.11'
   next@>=16.0.0-beta.0 <16.1.5: '>=16.1.5'
@@ -84,7 +85,7 @@ importers:
         specifier: ^12.29.0
         version: 12.29.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next:
-        specifier: '>=16.1.7'
+        specifier: '>=15.5.18'
         version: 16.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       next-themes:
         specifier: ^0.4.6
@@ -845,8 +846,8 @@ packages:
   '@types/react@19.2.9':
     resolution: {integrity: sha512-Lpo8kgb/igvMIPeNV2rsYKTgaORYdO1XGVZ4Qz3akwOj0ySGYMPlQWa8BaLn0G63D1aSaAQ5ldR06wCpChQCjA==}
 
-  baseline-browser-mapping@2.10.27:
-    resolution: {integrity: sha512-zEs/ufmZoUd7WftKpKyXaT6RFxpQ5Qm9xytKRHvJfxFV9DFJkZph9RvJ1LcOUi0Z1ZVijMte65JbILeV+8QQEA==}
+  baseline-browser-mapping@2.10.31:
+    resolution: {integrity: sha512-MujYO3eP72uvmSE0i4wltsodRfIpZATP3jvzRNRGGxgzId7aVocVJJV3nf01qnzzKFGxQVC9bpWxl5cjxTr/7Q==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
@@ -2143,7 +2144,7 @@ snapshots:
     dependencies:
       csstype: 3.2.3
 
-  baseline-browser-mapping@2.10.27: {}
+  baseline-browser-mapping@2.10.31: {}
 
   bowser@2.13.1: {}
 
@@ -2274,7 +2275,7 @@ snapshots:
     dependencies:
       '@next/env': 16.2.6
       '@swc/helpers': 0.5.15
-      baseline-browser-mapping: 2.10.27
+      baseline-browser-mapping: 2.10.31
       caniuse-lite: 1.0.30001766
       postcss: 8.5.14
       react: 19.1.0
