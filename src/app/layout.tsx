@@ -42,7 +42,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${robotoCondensedFont.className}${robotoFont.className} antialiased overflow-hidden`}
       >
-        <div className="max-[1046px]:h-250 absolute left-0 right-0 z-[-1]">
+        <div className="max-[1046px]:h-250 h-full absolute left-0 right-0 z-[-1]">
           <DarkVeil speed={1.3} hueShift={31} />
         </div>
         <Navbar />
