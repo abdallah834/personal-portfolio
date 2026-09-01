@@ -156,8 +156,8 @@ export default function About() {
         <StickyScroll content={content} />
       </div>
       <div className="lg:hidden w-full py-4 h-screen flex justify-center items-center relative z-3 overflow-hidden">
-        <div className="container mx-auto h-[490px] flex flex-col gap-8 justify-center text-white items-center text-center overflow-y-visible overflow-hidden scrollbar">
-          <div className="sm:w-lg sm:mt-20 md:w-2xl relative top-130 bot-0 translate-y-50 flex flex-col items-center justify-center gap-35 sm:gap-22.5">
+        <div className="container mx-auto h-122.5 flex flex-col gap-8 justify-center text-white items-center text-center overflow-y-visible overflow-hidden scrollbar">
+          <div className="sm:w-lg sm:mt-10 md:w-2xl relative top-130 bot-0 translate-y-50 flex flex-col items-center justify-center gap-35 sm:gap-12.5">
             <div className="flex flex-col items-center gap-7">
               <Link
                 href={"https://next-js-e-commerce-omega-rouge.vercel.app/"}

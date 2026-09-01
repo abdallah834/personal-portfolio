@@ -6,7 +6,16 @@ import Link from "next/link";
 import { FlipWords } from "@/components/ui/flip-words";
 import AnimatedContent from "@/components/AnimatedContent";
 export default function Home() {
-  const words = ["React JS.", "Next JS.", "TailwindCSS.", "BootstrapCSS."];
+  const words = [
+    "React.Js",
+    "Next.Js",
+    "TailwindCSS",
+    "BootstrapCSS",
+    "Node.Js",
+    "Express.Js",
+    "MongoDB",
+    "Nest.Js",
+  ];
   const personalGmail = "abdallahayman834@gmail.com";
   return (
     <main>
@@ -67,7 +76,7 @@ export default function Home() {
               I am Abdullah Ayman.
             </h2>
             <span className="break-all flex flex-col items-center text-[15px] min-[395px]:text-lg min-[500px]:inline-block sm:text-2xl font-[Roboto Condensed] text-center lg:text-start">
-              I create frontend websites and web apps using{" "}
+              I develop MERN web apps using{" "}
               <FlipWords words={words} className="p-0 text-white font-bold" />
             </span>
           </div>

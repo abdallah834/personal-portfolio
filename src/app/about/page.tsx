@@ -58,6 +58,26 @@ export default function About() {
       textColor: "text-black",
       content: "SEO Basics",
     },
+    {
+      backgroundColor: "bg-green-600",
+      textColor: "text-white",
+      content: "Node.Js",
+    },
+    {
+      backgroundColor: "bg-white",
+      textColor: "text-black",
+      content: "Express.Js",
+    },
+    {
+      backgroundColor: "bg-green-600",
+      textColor: "text-white",
+      content: "MongoDB",
+    },
+    {
+      backgroundColor: "bg-rose-600",
+      textColor: "text-white",
+      content: "Nest.Js",
+    },
   ];
   return (
     <div className="text-white flex flex-col justify-center items-center relative z-0 pt-25 sm:pt-12 px-4">
@@ -79,16 +99,17 @@ export default function About() {
           </span>
           <ul className="list-disc list-inside space-y-3 text-xs md:text-base tracking-wide">
             <li>
-              Started as a self taught web developer using udemy frontend web
-              development courses and now a current attendant at route academy.
+              MERN Stack Developer who completed an intensive 600+ hour Full
+              Stack Web Development track at Route Academy.
             </li>
             <li>
               Experienced with CSS frameworks such as (Bootstrap), (TailwindCSS)
               library and JS (React) library using (Vite) or (NextJS).
             </li>
             <li>
-              Experienced with web tech such as (HTML- CSS - JS - React -
-              NextJS) and will be attending backend courses.
+              Experienced with frontend tech such as (HTML- CSS - JS - React -
+              NextJS) and (Node.Js - Express.Js - MongoDB - Nest.Js) for the
+              backend.
             </li>
             <li>
               Experienced with (React) UI libraries such as (ReactBits - Motion
