@@ -29,7 +29,7 @@
     "sonner": "^2.0.8",
     "tailwind-merge": "^3.6.0",
     "tailwind-scrollbar": "^4.0.2",
-    "zod": "^4.5.4"
+    "zod": "^4.6.6"
   },
   "devDependencies": {
     "@iconify/react": "^6.0.2",
